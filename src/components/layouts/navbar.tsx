@@ -11,6 +11,22 @@ import Container from "./container";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    id: string,
+  ) => {
+    e.preventDefault();
+    setIsOpen(false);
+
+    // Berikan sedikit delay agar menu sempat menutup lalu scroll berjalan lancar
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 150);
+  };
+
   return (
     <div className=" fixed w-full top-0 z-50 py-2 gap-3 bg-white ">
       <Container>
@@ -63,7 +79,7 @@ export default function Navbar() {
                   <span
                     key={item.id}
                     className="hover:bg-[#F5F5F7] px-3 py-1 rounded-xl"
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => handleNavClick(e, item.id)}
                   >
                     <a href={item.id}>{item.label}</a>
                   </span>

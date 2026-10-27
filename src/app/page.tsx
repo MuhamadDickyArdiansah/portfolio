@@ -75,7 +75,7 @@ export default function Home() {
           </Container>
         </section>
 
-        <section id="about" className="flex mt-20">
+        <section id="about" className="scroll-mt-20 flex mt-20">
           <Container>
             <div className="flex gap-5 flex-col sm:flex-row">
               <div className="flex flex-col w-full sm:w-1/2 gap-10">
@@ -139,7 +139,7 @@ export default function Home() {
           </Container>
         </section>
 
-        <section id="projects" className="mt-20">
+        <section id="projects" className="scroll-mt-20 mt-20">
           <Container>
             <div className="flex justify-center">
               <h2 className="font-display font-bold text-2xl mb-10">
@@ -191,7 +191,7 @@ export default function Home() {
           </Container>
         </section>
 
-        <section id="contact" className="flex my-20 ">
+        <section id="contact" className="scroll-mt-20 flex my-20 ">
           <Container>
             <div className="flex sm:justify-around justify-center items-center sm:items-start sm:flex-row flex-col">
               <div className="max-w-xs font-display">

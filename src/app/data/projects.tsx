@@ -35,4 +35,30 @@ export const projects: Projects[] = [
     githubUrl: "https://github.com/example/project",
     featured: true,
   },
+
+  {
+    id: "project-3",
+    title: "Website TerraPetto Pet Care",
+    description:
+      "A pet care website designed to provide information about pet care services through a clean and user-friendly interface. Built to deliver an intuitive browsing experience and make service information easily accessible to pet owners.",
+    imageUrl: "projects/terrapetto.png",
+    imageSize: "w-lg",
+    tags: ["TypeScript", "Tailwind CSS", "MongoDB", "Express.js"],
+    liveUrl: "https://front-end-terra-petto.vercel.app/",
+    githubUrl: "https://github.com/MuhamadDickyArdiansah/front-end-TerraPetto",
+    featured: true,
+  },
+
+  {
+    id: "project-4",
+    title: "Dixy.ai - AI Chat",
+    description:
+      "An AI-powered chat application built using the IBM Granite API to generate intelligent responses through a conversational interface. Developed with a focus on clean UI design, responsive layouts, and seamless interaction with AI capabilities.",
+    imageUrl: "projects/dixy.png",
+    imageSize: "w-lg",
+    tags: ["TypeScript", "Tailwind CSS", "IBM Granite API"],
+    liveUrl: "YOUR_LIVE_URL",
+    githubUrl: "YOUR_GITHUB_URL",
+    featured: true,
+  },
 ];
