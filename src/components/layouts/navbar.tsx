@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from "react";
 
+import { motion, AnimatePresence } from "framer-motion";
+
 import { navItems } from "./nav-items";
-import { ArrowUpRight, Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Container from "./container";
 
 export default function Navbar() {
@@ -38,33 +40,51 @@ export default function Navbar() {
             className={`cursor-pointer md:hidden`}
             onClick={() => setIsOpen(!isOpen)}
           >
-            <Menu />
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
           </div>
         </nav>
-
-        {isOpen && (
-          <div className="md:hidden border-t border-white/50 backdrop-blur-xl max-md:group-has-checked:grid flex flex-col gap-3 flex-col">
-            <div className="flex flex-col justify-between gap-2">
-              {navItems.map((item) => (
-                <span
-                  key={item.id}
-                  className="hover:bg-[#F5F5F7] px-3 py-1 rounded-2xl border"
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="md:hidden border-t border-white/50 backdrop-blur-xl max-md:group-has-checked:grid flex flex-col gap-3 mt-5"
+            >
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="flex flex-col justify-between gap-2"
+              >
+                {navItems.map((item) => (
+                  <span
+                    key={item.id}
+                    className="hover:bg-[#F5F5F7] px-3 py-1 rounded-xl"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <a href={item.id}>{item.label}</a>
+                  </span>
+                ))}
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                <button
+                  className=" flex items-center bg-[#0066CC] text-white rounded-full px-3 cursor-pointer "
                   onClick={() => setIsOpen(false)}
                 >
-                  <a href={item.id}>{item.label}</a>
-                </span>
-              ))}
-            </div>
-            <div>
-              <button
-                className=" flex items-center bg-[#0066CC] text-white rounded-full px-3 cursor-pointer "
-                onClick={() => setIsOpen(false)}
-              >
-                Resume
-              </button>
-            </div>
-          </div>
-        )}
+                  Resume
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </Container>
     </div>
   );

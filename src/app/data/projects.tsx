@@ -3,6 +3,7 @@ export interface Projects {
   title: string;
   description: string;
   imageUrl: string;
+  imageSize: string;
   tags: string[];
   liveUrl?: string;
   githubUrl?: string;
@@ -16,6 +17,7 @@ export const projects: Projects[] = [
     description:
       "A personal finance management application for tracking income, expenses, and financial transactions. Designed to help users organize their finances and monitor spending through a simple and intuitive interface.",
     imageUrl: "projects/beranda.png",
+    imageSize: "w-lg",
     tags: ["TypeScript", "Tailwind CSS"],
     liveUrl: "https://example.com",
     githubUrl: "https://github.com/example/project",
@@ -26,7 +28,8 @@ export const projects: Projects[] = [
     title: "Chili Leaf Classification App",
     description:
       "A machine learning application for classifying chili leaf images into different categories. Combines image classification techniques with a user interface to make model predictions easier to access.",
-    imageUrl: "projects/beranda.png",
+    imageUrl: "projects/cercospora.jpeg",
+    imageSize: "w-30",
     tags: ["React Native", "JavaScript", "Python", "Machine Learning"],
     liveUrl: "https://example.com",
     githubUrl: "https://github.com/example/project",
