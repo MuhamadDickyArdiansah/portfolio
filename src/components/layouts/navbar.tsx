@@ -38,7 +38,7 @@ export default function Navbar() {
   }
 
   return (
-    <div className="fixed top-0 z-50 w-full bg-white py-2">
+    <div className="fixed top-0 z-50 w-full bg-background py-2">
       <Container>
         <nav
           aria-label="Main navigation"
@@ -58,7 +58,7 @@ export default function Navbar() {
                   key={item.id}
                   href={item.id}
                   onClick={(event) => navigateToSection(event, item.id)}
-                  className="rounded-full px-3 py-2 text-sm transition-colors hover:bg-[#F5F5F7]"
+                  className="rounded-full px-3 py-2 text-sm transition-colors hover:bg-surface"
                 >
                   {item.label}
                 </a>
@@ -68,7 +68,7 @@ export default function Navbar() {
               href={resumeUrl}
               target="_blank"
               rel="noreferrer"
-              className="hidden min-h-10 items-center rounded-full bg-[#0066CC] px-4 text-sm font-medium text-white transition-colors hover:bg-[#0057ad] md:flex"
+              className="hidden min-h-10 items-center rounded-full bg-accent px-4 text-sm font-medium text-on-accent transition-colors hover:bg-accent-hover md:flex"
             >
               Resume
             </a>
@@ -81,7 +81,7 @@ export default function Navbar() {
             }
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"
-            className="flex cursor-pointer h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-[#F5F5F7] md:hidden"
+            className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-surface md:hidden"
             onClick={() => setIsOpen((open) => !open)}
           >
             {isOpen ? (
@@ -107,7 +107,7 @@ export default function Navbar() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="mt-2 flex flex-col gap-2 overflow-hidden border-t border-slate-200 pt-3 md:hidden"
+              className="mt-2 flex flex-col gap-2 overflow-hidden border-t border-border pt-3 md:hidden"
             >
               <div className="flex flex-col gap-1">
                 {navItems.map((item) => (
@@ -115,7 +115,7 @@ export default function Navbar() {
                     key={item.id}
                     href={item.id}
                     onClick={(event) => navigateToSection(event, item.id, true)}
-                    className="block rounded-xl px-3 py-2 font-medium transition-colors hover:bg-[#F5F5F7]"
+                    className="block rounded-xl px-3 py-2 font-medium transition-colors hover:bg-surface"
                   >
                     {item.label}
                   </a>
@@ -126,7 +126,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noreferrer"
                 onClick={() => setIsOpen(false)}
-                className="inline-flex min-h-11 items-center self-start rounded-full bg-[#0066CC] px-4 font-medium text-white transition-colors hover:bg-[#0057ad]"
+                className="inline-flex min-h-11 items-center self-start rounded-full bg-accent px-4 font-medium text-on-accent transition-colors hover:bg-accent-hover"
               >
                 Resume
               </a>

@@ -32,7 +32,7 @@ export default function Home() {
                   <div>
                     <a
                       href="#projects"
-                      className="inline-flex min-h-11 items-center gap-2 rounded-full bg-black px-4 py-2 font-sans text-sm font-medium text-white transition-colors hover:bg-[#333]"
+                      className="inline-flex min-h-11 items-center gap-2 rounded-full bg-contrast px-4 py-2 font-sans text-sm font-medium text-on-contrast transition-colors hover:bg-secondary"
                     >
                       Get Started <ArrowRight aria-hidden="true" size={16} />
                     </a>
@@ -41,7 +41,7 @@ export default function Home() {
 
                 <div className="relative flex w-full items-center justify-center pt-8 pb-6 sm:w-1/2 sm:pt-12">
                   <div className="group relative w-full max-w-[16rem] sm:max-w-sm">
-                    <div className="relative aspect-square w-full rounded-full border border-black/5 bg-gradient-to-b from-slate-100 to-slate-200 shadow-xl shadow-black/5" />
+                    <div className="relative aspect-square w-full rounded-full border border-foreground/5 bg-gradient-to-b from-surface-tint to-surface-tint-strong shadow-xl shadow-foreground/5" />
 
                     <div className="pointer-events-none absolute inset-0 flex items-end justify-center">
                       <Image
@@ -55,12 +55,12 @@ export default function Home() {
                       />
                     </div>
 
-                    <div className="pointer-events-none absolute -right-2 -bottom-2 z-20 flex flex-col items-start sm:-right-4">
+                    <div className="pointer-events-none absolute left-11/12 -bottom-2 z-20 flex flex-col items-start sm:-right-4 animate-bounce">
                       <MousePointer2
                         aria-hidden="true"
-                        className="-mb-1.5 -ml-2.5 h-5 w-5 -rotate-12 fill-[#0066CC] text-white drop-shadow-md"
+                        className="-mb-1.5 -ml-2.5 h-5 w-5 -rotate-12 fill-accent text-on-accent drop-shadow-md"
                       />
-                      <div className="rounded-full bg-[#0066CC] px-3.5 py-1.5 font-sans text-xs font-medium text-white shadow-lg shadow-[#0066CC]/30 sm:text-sm">
+                      <div className="rounded-full bg-accent px-3.5 py-1.5 font-sans text-xs font-medium text-on-accent shadow-lg shadow-accent/30 sm:text-sm">
                         Dicky
                       </div>
                     </div>
@@ -107,15 +107,15 @@ export default function Home() {
                     >
                       <div className="flex min-h-full gap-x-4">
                         <div className="flex shrink-0 flex-col items-center">
-                          <div className="z-10 h-3 w-3 shrink-0 rounded-full bg-slate-400 ring-4 ring-white" />
-                          <div className="min-h-8 w-0.5 flex-1 bg-gray-300" />
+                          <div className="z-10 h-3 w-3 shrink-0 rounded-full bg-muted ring-4 ring-background" />
+                          <div className="min-h-8 w-0.5 flex-1 bg-border" />
                         </div>
 
                         <div className="-translate-y-1 min-w-0 pb-6">
-                          <h2 className="font-display text-base font-bold text-slate-800">
+                          <h2 className="font-display text-base font-bold text-foreground">
                             {experience.title}
                           </h2>
-                          <h3 className="font-display text-sm text-[#1D1D1F] sm:text-base">
+                          <h3 className="font-display text-sm text-foreground sm:text-base">
                             {experience.organization}
                           </h3>
                           <p className="mt-2 text-sm leading-relaxed">
@@ -146,14 +146,14 @@ export default function Home() {
                       <h3 className="font-display text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
                         {project.title}
                       </h3>
-                      <p className="text-sm leading-relaxed text-[#6E6E73] sm:text-base">
+                      <p className="text-sm leading-relaxed text-muted sm:text-base">
                         {project.description}
                       </p>
                       <div className="flex flex-wrap gap-2 pt-1">
                         {project.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="rounded-full bg-white/80 px-3 py-1.5 font-sans text-xs font-medium text-[#424245]"
+                            className="rounded-full bg-surface-raised/80 px-3 py-1.5 font-sans text-xs font-medium text-secondary"
                           >
                             {tag}
                           </span>
@@ -169,14 +169,14 @@ export default function Home() {
                         className="object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                       />
                     </div>
-                    <div className="mt-4 flex items-center justify-between px-1 text-sm font-medium text-[#6E6E73]">
-                      <span className="transition-colors group-hover:text-[#0066CC]">
+                    <div className="mt-4 flex items-center justify-between px-1 text-sm font-medium text-muted">
+                      <span className="transition-colors group-hover:text-accent">
                         {project.liveUrl
                           ? "View project"
                           : "Live website unavailable"}
                       </span>
                       {project.liveUrl && (
-                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#1D1D1F] transition-transform duration-300 group-hover:translate-x-1">
+                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-surface-raised text-foreground transition-transform duration-300 group-hover:translate-x-1">
                           <ChevronRight aria-hidden="true" size={18} />
                         </span>
                       )}
@@ -184,7 +184,7 @@ export default function Home() {
                   </>
                 );
                 const cardClassName =
-                  "group w-full max-w-lg overflow-hidden rounded-3xl border border-black/[0.04] bg-[#F5F5F7] p-4 shadow-sm transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-xl hover:shadow-black/[0.08] sm:p-5";
+                  "group w-full max-w-lg overflow-hidden rounded-3xl border border-border/50 bg-surface p-4 shadow-sm shadow-foreground/5 transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-xl hover:shadow-foreground/10 sm:p-5";
 
                 return project.liveUrl ? (
                   <a
@@ -193,7 +193,7 @@ export default function Home() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={`Visit ${project.title} project website (opens in a new tab)`}
-                    className={`${cardClassName} focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0066CC]`}
+                    className={`${cardClassName} focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent`}
                   >
                     {cardContent}
                   </a>
