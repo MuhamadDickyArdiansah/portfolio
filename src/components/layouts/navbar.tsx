@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useRef, useState } from "react";
 
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -10,78 +10,126 @@ import Container from "./container";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pendingScrollTarget = useRef<HTMLElement | null>(null);
+  const resumeUrl =
+    "https://drive.google.com/file/d/1VyDWgQbe0u7e87kLnrNrOP13J54PJ_92/view?usp=sharing";
+
+  function navigateToSection(
+    event: React.MouseEvent<HTMLAnchorElement>,
+    sectionId: string,
+    closeMenu = false,
+  ) {
+    event.preventDefault();
+    const section = document.querySelector<HTMLElement>(sectionId);
+
+    if (!section) {
+      return;
+    }
+
+    window.history.pushState(null, "", sectionId);
+
+    if (closeMenu) {
+      pendingScrollTarget.current = section;
+      setIsOpen(false);
+      return;
+    }
+
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 
   return (
-    <div className=" fixed w-full top-0 z-50 py-2 gap-3 bg-white ">
+    <div className="fixed top-0 z-50 w-full bg-white py-2">
       <Container>
-        <nav className="flex justify-between items-center">
-          <h3 className="font-display font-bold">Muhamad Dicky</h3>
-          <div className="flex justify-between gap-4 font-sans">
-            <div className="hidden md:flex justify-between gap-2">
+        <nav
+          aria-label="Main navigation"
+          className="flex items-center justify-between"
+        >
+          <a
+            href="#home"
+            className="font-display font-bold"
+            onClick={() => setIsOpen(false)}
+          >
+            Muhamad Dicky
+          </a>
+          <div className="flex items-center gap-4 font-sans">
+            <div className="hidden items-center gap-2 md:flex">
               {navItems.map((item) => (
-                <span
+                <a
                   key={item.id}
-                  className="hover:bg-[#F5F5F7] px-3 py-1 rounded-2xl "
+                  href={item.id}
+                  onClick={(event) => navigateToSection(event, item.id)}
+                  className="rounded-full px-3 py-2 text-sm transition-colors hover:bg-[#F5F5F7]"
                 >
-                  <a href={item.id}>{item.label}</a>
-                </span>
+                  {item.label}
+                </a>
               ))}
             </div>
             <a
-              href="https://drive.google.com/file/d/1VyDWgQbe0u7e87kLnrNrOP13J54PJ_92/view?usp=sharing"
+              href={resumeUrl}
               target="_blank"
-              className="md:flex items-center bg-[#0066CC] text-white rounded-full px-3 cursor-pointer hidden aria-hidden:true"
+              rel="noreferrer"
+              className="hidden min-h-10 items-center rounded-full bg-[#0066CC] px-4 text-sm font-medium text-white transition-colors hover:bg-[#0057ad] md:flex"
             >
               Resume
             </a>
           </div>
 
-          <div
-            className={`cursor-pointer md:hidden`}
-            onClick={() => setIsOpen(!isOpen)}
+          <button
+            type="button"
+            aria-label={
+              isOpen ? "Close navigation menu" : "Open navigation menu"
+            }
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
+            className="flex cursor-pointer h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-[#F5F5F7] md:hidden"
+            onClick={() => setIsOpen((open) => !open)}
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </div>
+            {isOpen ? (
+              <X aria-hidden="true" size={22} />
+            ) : (
+              <Menu aria-hidden="true" size={22} />
+            )}
+          </button>
         </nav>
-        <AnimatePresence>
+        <AnimatePresence
+          onExitComplete={() => {
+            pendingScrollTarget.current?.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+            pendingScrollTarget.current = null;
+          }}
+        >
           {isOpen && (
             <motion.div
+              id="mobile-navigation"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden border-t border-white/50 backdrop-blur-xl max-md:group-has-checked:grid flex flex-col gap-3 mt-5"
+              className="mt-2 flex flex-col gap-2 overflow-hidden border-t border-slate-200 pt-3 md:hidden"
             >
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="flex flex-col justify-between gap-2"
-              >
+              <div className="flex flex-col gap-1">
                 {navItems.map((item) => (
-                  <span
+                  <a
                     key={item.id}
-                    className="hover:bg-[#F5F5F7] px-3 py-1 rounded-xl"
-                    onClick={() => setIsOpen(!isOpen)}
+                    href={item.id}
+                    onClick={(event) => navigateToSection(event, item.id, true)}
+                    className="block rounded-xl px-3 py-2 font-medium transition-colors hover:bg-[#F5F5F7]"
                   >
-                    <a href={item.id}>{item.label}</a>
-                  </span>
+                    {item.label}
+                  </a>
                 ))}
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+              </div>
+              <a
+                href={resumeUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="inline-flex min-h-11 items-center self-start rounded-full bg-[#0066CC] px-4 font-medium text-white transition-colors hover:bg-[#0057ad]"
               >
-                <button
-                  className=" flex items-center bg-[#0066CC] text-white rounded-full px-3 cursor-pointer "
-                  onClick={() => setIsOpen(false)}
-                >
-                  Resume
-                </button>
-              </motion.div>
+                Resume
+              </a>
             </motion.div>
           )}
         </AnimatePresence>

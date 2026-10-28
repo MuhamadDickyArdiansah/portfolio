@@ -19,7 +19,8 @@ export const projects: Projects[] = [
     imageUrl: "projects/beranda.png",
     imageSize: "w-lg",
     tags: ["TypeScript", "Tailwind CSS"],
-    liveUrl: "https://example.com",
+    liveUrl: "https://front-end-terra-petto.vercel.app/",
+
     githubUrl: "https://github.com/example/project",
     featured: true,
   },
@@ -31,7 +32,8 @@ export const projects: Projects[] = [
     imageUrl: "projects/cercospora.jpeg",
     imageSize: "w-30",
     tags: ["React Native", "JavaScript", "Python", "Machine Learning"],
-    liveUrl: "https://example.com",
+    liveUrl: "https://front-end-terra-petto.vercel.app/",
+
     githubUrl: "https://github.com/example/project",
     featured: true,
   },
@@ -57,7 +59,8 @@ export const projects: Projects[] = [
     imageUrl: "projects/dixy.png",
     imageSize: "w-lg",
     tags: ["TypeScript", "Tailwind CSS", "IBM Granite API"],
-    liveUrl: "YOUR_LIVE_URL",
+    liveUrl: "https://front-end-terra-petto.vercel.app/",
+
     githubUrl: "YOUR_GITHUB_URL",
     featured: true,
   },
